@@ -7,10 +7,12 @@ Self-Driving Car Engineer Nanodegree Program
 
 * cmake >= 3.5
  * All OSes: [click here for installation instructions](https://cmake.org/install/)
+  - Specifically, I followed instruction at [this link](http://tudat.tudelft.nl/projects/tudat/wiki/Install_on_Mac_OS_X) using dmg file for CMake. 
 * make >= 4.1
   * Linux: make is installed by default on most Linux distros
   * Mac: [install Xcode command line tools to get make](https://developer.apple.com/xcode/features/)
-  * Windows: [Click here for installation instructions](http://gnuwin32.sourceforge.net/packages/make.htm)
+   － In case you have same issue like me in Mac, Mac seems to have GNU 3.81 Make under Commandline Tools, even latest Xcode does not contain newer Make version per my experience and [this stateoverflow poster - "updating-make-version-4-1-on-mac"](http://stackoverflow.com/questions/43175529/updating-make-version-4-1-on-mac). So step to update Make yourself is per the link above using homebrew: `brew install make --with-default-names`. `export PATH="/usr/local/bin:$PATH"` to update the correct newer location of Make. 
+  * Windows: [Click here for installation instructions](http://gnuwin32.sourceforge.net/packages/make.htm)
 * gcc/g++ >= 5.4
   * Linux: gcc / g++ is installed by default on most Linux distros
   * Mac: same deal as make - [install Xcode command line tools]((https://developer.apple.com/xcode/features/)
