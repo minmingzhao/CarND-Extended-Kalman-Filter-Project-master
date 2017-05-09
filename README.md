@@ -16,6 +16,7 @@ Self-Driving Car Engineer Nanodegree Program
 * gcc/g++ >= 5.4
   * Linux: gcc / g++ is installed by default on most Linux distros
   * Mac: same deal as make - [install Xcode command line tools]((https://developer.apple.com/xcode/features/)
+  - [InstallingGccMac](http://cs.millersville.edu/~gzoppetti/InstallingGccMac.html)
   * Windows: recommend using [MinGW](http://www.mingw.org/)
 
 ## Basic Build Instructions
