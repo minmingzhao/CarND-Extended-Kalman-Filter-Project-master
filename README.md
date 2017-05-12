@@ -1,5 +1,6 @@
 # Extended Kalman Filter Project Starter Code
-Self-Driving Car Engineer Nanodegree Program
+Self-Driving Car Engineer Nanodegree Program: My 6th Self Driving Car ND Project, 1st Project at Term 2. 
+The main goal of this project is to apply (extended) kalman filter from Lidar and Radar sensors of a self driving car using C++ language. 
 
 ---
 
@@ -19,70 +20,41 @@ Self-Driving Car Engineer Nanodegree Program
     * [InstallingGccMac](http://cs.millersville.edu/~gzoppetti/InstallingGccMac.html)
   * Windows: recommend using [MinGW](http://www.mingw.org/)
 
-## Basic Build Instructions
+## Contents of this repo
+`src` a directory with the cpp codes:
+* `main.cpp`- reads in data, calls a function to run the Kalman filter, calls a function to calculate RMSE
+* `FusionEKF.cpp`- reads in data, calls a function to run the Kalman filter, calls a function to calculate RMSE
+* `kalman_filter.cpp`- reads in data, calls a function to run the Kalman filter, calls a function to calculate RMSE
+* `tools.cpp`- function to calculate RMSE and the Jacobian matrix
 
+`data` folder:
+* `obj_pose-laser-radar-synthetic-input.txt`: data file containing Lidar and Radar data. The columns are
+  * For a row containing radar data, the columns are: sensor_type, rho_measured, phi_measured, rhodot_measured, timestamp, x_groundtruth, y_groundtruth, vx_groundtruth, vy_groundtruth, yaw_groundtruth, yawrate_groundtruth
+  * For a row containing lidar data, the columns are: sensor_type, x_measured, y_measured, timestamp, x_groundtruth, y_groundtruth, vx_groundtruth, vy_groundtruth, yaw_groundtruth, yawrate_groundtruth.
+
+`results` a directory containing output and log files, as well as ekf visualization plot. 
+
+`Docs` a directory with data file structure description
+
+`Visualization` a directory with python script to visualize the ekf C++ output file. 
+
+## Results
+[ekf_visualization.png]: ./results/ekf_visualization.png
+![alt text][ekf_visualization.png]
+
+Accuracy (RMSE): [0.0972256, 0.0853761, 0.450855, 0.439588]. And it is less than the requirement. 
+Project Requirement: [0.11, 0.11, 0.52, 0.52]
+
+## Lesson learnt
+* When converting cartesian coordinates to polar coordinates, we should use atan2(y,x) instead of atan(y/x) as the later could only do first and fourth quadrant (`pi/2 ~ pi/2) while atan2 returns -pi ~ pi, covering all four quadrants. 
+* When calculating phi in y = z - h(x) for radar measurements, the resulting angle phi in the y vector should be adjusted so that it is between -pi and pi. The Kalman filter is expecting small angle values between the range -pi and pi. So when working in radians, we should add 2π or subtract 2π until the angle is within the desired range.
+
+## How to run the code
 1. Clone this repo.
 2. Make a build directory: `mkdir build && cd build`
 3. Compile: `cmake .. && make` 
-   * On windows, you may need to run: `cmake .. -G "Unix Makefiles" && make`
-4. Run it: `./ExtendedKF path/to/input.txt path/to/output.txt`. You can find
-   some sample inputs in 'data/'.
-    - eg. `./ExtendedKF ../data/obj_pose-laser-radar-synthetic-input.txt`
+4. Run it: `./ExtendedKF ../data/obj_pose-laser-radar-synthetic-input.txt obj_output.txt > obj_input.log`. 
 
-## Editor Settings
+To have a detailed description of the project requirements, please see [this repo](https://github.com/udacity/CarND-Extended-Kalman-Filter-Project). 
 
-We've purposefully kept editor configuration files out of this repo in order to
-keep it as simple and environment agnostic as possible. However, we recommend
-using the following settings:
 
-* indent using spaces
-* set tab width to 2 spaces (keeps the matrices in source code aligned)
-
-## Code Style
-
-Please (do your best to) stick to [Google's C++ style guide](https://google.github.io/styleguide/cppguide.html).
-
-## Generating Additional Data
-
-This is optional!
-
-If you'd like to generate your own radar and lidar data, see the
-[utilities repo](https://github.com/udacity/CarND-Mercedes-SF-Utilities) for
-Matlab scripts that can generate additional data.
-
-## Project Instructions and Rubric
-
-Note: regardless of the changes you make, your project must be buildable using
-cmake and make!
-
-More information is only accessible by people who are already enrolled in Term 2
-of CarND. If you are enrolled, see [the project resources page](https://classroom.udacity.com/nanodegrees/nd013/parts/40f38239-66b6-46ec-ae68-03afd8a601c8/modules/0949fca6-b379-42af-a919-ee50aa304e6a/lessons/f758c44c-5e40-4e01-93b5-1a82aa4e044f/concepts/382ebfd6-1d55-4487-84a5-b6a5a4ba1e47)
-for instructions and the project rubric.
-
-## Hints!
-
-* You don't have to follow this directory structure, but if you do, your work
-  will span all of the .cpp files here. Keep an eye out for TODOs.
-
-## Call for IDE Profiles Pull Requests
-
-Help your fellow students!
-
-We decided to create Makefiles with cmake to keep this project as platform
-agnostic as possible. Similarly, we omitted IDE profiles in order to we ensure
-that students don't feel pressured to use one IDE or another.
-
-However! We'd love to help people get up and running with their IDEs of choice.
-If you've created a profile for an IDE that you think other students would
-appreciate, we'd love to have you add the requisite profile files and
-instructions to ide_profiles/. For example if you wanted to add a VS Code
-profile, you'd add:
-
-* /ide_profiles/vscode/.vscode
-* /ide_profiles/vscode/README.md
-
-The README should explain what the profile does, how to take advantage of it,
-and how to install it.
-
-Regardless of the IDE used, every submitted project must
-still be compilable with cmake and make.
