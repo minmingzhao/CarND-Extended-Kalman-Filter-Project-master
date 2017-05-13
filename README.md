@@ -46,8 +46,8 @@ Accuracy (RMSE): [0.0972256, 0.0853761, 0.450855, 0.439588]. And it is less than
 Project Requirement: [0.11, 0.11, 0.52, 0.52]
 
 ## Lesson learnt
-* When converting cartesian coordinates to polar coordinates, we should use atan2(y,x) instead of atan(y/x) as the later could only do first and fourth quadrant (`pi/2 ~ pi/2) while atan2 returns -pi ~ pi, covering all four quadrants. 
-* When calculating phi in y = z - h(x) for radar measurements, the resulting angle phi in the y vector should be adjusted so that it is between -pi and pi. The Kalman filter is expecting small angle values between the range -pi and pi. So when working in radians, we should add 2π or subtract 2π until the angle is within the desired range.
+* When converting cartesian coordinates to polar coordinates, we should use atan2(y,x) instead of atan(y/x) as the later could only do first and fourth quadrant (π/2 ~ π/2) while atan2 returns （-π ~ π）, covering all four quadrants. 
+* When calculating phi in ｀y = z - h(x)｀ for radar measurements, the resulting angle phi in the y vector should be adjusted so that it is between -pi and pi. The Kalman filter is expecting small angle values between the range -pi and pi. So when working in radians, we should add 2π or subtract 2π until the angle is within the desired range.
 
 ## How to run the code
 1. Clone this repo.
